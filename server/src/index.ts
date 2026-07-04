@@ -25,6 +25,15 @@ if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir, { recursive: true });
 }
 
+// Healthcheck endpoints
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+app.get('/', (req, res) => {
+  res.send('AI Company Research Assistant Server is running!');
+});
+
 // Download PDF endpoint
 app.get('/api/pdf/:filename', (req, res) => {
   const filePath = path.join(tempDir, req.params.filename);
