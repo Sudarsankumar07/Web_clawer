@@ -75,9 +75,19 @@ Please perform the analysis and return the structured JSON object:`;
         }
       );
 
+      if (!response.data) {
+        throw new Error('No response data received from OpenRouter API.');
+      }
+      if (response.data.error) {
+        const errorDetails = response.data.error.message || JSON.stringify(response.data.error);
+        throw new Error(`OpenRouter API returned error: ${errorDetails}`);
+      }
+      if (!response.data.choices || !Array.isArray(response.data.choices) || response.data.choices.length === 0) {
+        throw new Error(`OpenRouter API response choices are empty/invalid. Response: ${JSON.stringify(response.data)}`);
+      }
       const responseText = response.data.choices[0]?.message?.content?.trim();
       if (!responseText) {
-        throw new Error('Empty response received from OpenRouter API.');
+        throw new Error('Empty response content received from OpenRouter API.');
       }
 
       // Robust parsing
