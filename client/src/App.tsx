@@ -951,23 +951,23 @@ export default function App() {
                 placeholder="Name a company (e.g. Notion) or official URL (e.g. stripe.com)..."
                 disabled={researchState === 'searching'}
                 rows={1}
-                className="flex-1 outline-none resize-none bg-transparent text-[13.5px] text-slate-100 placeholder-slate-500 h-[28px] py-1 pl-2.5 pr-14 select-text leading-relaxed"
+                className="flex-1 outline-none resize-none overflow-hidden bg-transparent text-[13.5px] text-slate-100 placeholder-slate-500 h-[28px] py-1 pl-2.5 pr-14 select-text leading-relaxed"
               />
 
               {/* Dynamic Action Trigger Button */}
               <button
                 onClick={startResearch}
                 disabled={researchState === 'searching' || !query.trim()}
-                className={`absolute right-2.5 p-2 rounded-xl text-white transition duration-200 select-none ${
+                className={`absolute right-3.5 top-1/2 -translate-y-1/2 p-2 rounded-full transition duration-200 select-none flex items-center justify-center ${
                   query.trim() && researchState !== 'searching'
-                    ? 'bg-emerald-600 hover:bg-emerald-500 cursor-pointer' 
-                    : 'bg-[#222] text-[#444] cursor-not-allowed'
+                    ? 'bg-white text-[#212121] hover:scale-105 hover:bg-slate-100 cursor-pointer' 
+                    : 'bg-[#3c3c3c]/60 text-slate-600 cursor-not-allowed'
                 }`}
               >
                 {researchState === 'searching' ? (
-                  <Loader2 size={15} className="animate-spin text-emerald-450" />
+                  <Loader2 size={14} className="animate-spin text-emerald-500" />
                 ) : (
-                  <Send size={15} />
+                  <Send size={14} strokeWidth={2.5} />
                 )}
               </button>
             </div>
