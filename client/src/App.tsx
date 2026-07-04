@@ -7,7 +7,9 @@ import {
   Phone, 
   MapPin, 
   ExternalLink,
-  AlertTriangle
+  AlertTriangle,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 
 const rawApiUrl = import.meta.env.VITE_API_URL || '';
@@ -74,6 +76,11 @@ export default function App() {
   const [researchState, setResearchState] = useState<'idle' | 'searching' | 'completed' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   
+  // Password Visibility States
+  const [showOpenRouterKey, setShowOpenRouterKey] = useState(false);
+  const [showSerperKey, setShowSerperKey] = useState(false);
+  const [showBotToken, setShowBotToken] = useState(false);
+
   // Streaming progress track
   const [progressLog, setProgressLog] = useState<{ step: string; message: string; timestamp: Date }[]>([]);
   const [activeStep, setActiveStep] = useState<string>('');
@@ -361,26 +368,44 @@ export default function App() {
             <form onSubmit={handleSaveApiConfig} className="flex flex-col gap-4">
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-400 tracking-wider">OPENROUTER API KEY</label>
-                <input
-                  type="password"
-                  value={apiConfig.openRouterKey}
-                  onChange={e => setApiConfig({ ...apiConfig, openRouterKey: e.target.value })}
-                  placeholder="sk-or-v1-..."
-                  autoComplete="new-password"
-                  className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
-                />
+                <div className="relative">
+                  <input
+                    type={showOpenRouterKey ? "text" : "password"}
+                    value={apiConfig.openRouterKey}
+                    onChange={e => setApiConfig({ ...apiConfig, openRouterKey: e.target.value })}
+                    placeholder="sk-or-v1-..."
+                    autoComplete="new-password"
+                    className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md pl-3 pr-10 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowOpenRouterKey(!showOpenRouterKey)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 cursor-pointer flex items-center justify-center"
+                  >
+                    {showOpenRouterKey ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-400 tracking-wider">SERPER.DEV API KEY</label>
-                <input
-                  type="password"
-                  value={apiConfig.serperKey}
-                  onChange={e => setApiConfig({ ...apiConfig, serperKey: e.target.value })}
-                  placeholder="Your Serper key..."
-                  autoComplete="new-password"
-                  className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
-                />
+                <div className="relative">
+                  <input
+                    type={showSerperKey ? "text" : "password"}
+                    value={apiConfig.serperKey}
+                    onChange={e => setApiConfig({ ...apiConfig, serperKey: e.target.value })}
+                    placeholder="Your Serper key..."
+                    autoComplete="new-password"
+                    className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md pl-3 pr-10 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowSerperKey(!showSerperKey)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 cursor-pointer flex items-center justify-center"
+                  >
+                    {showSerperKey ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
@@ -415,14 +440,23 @@ export default function App() {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-400 tracking-wider">BOT TOKEN</label>
-                <input
-                  type="password"
-                  value={discordConfig.botToken}
-                  onChange={e => setDiscordConfig({ ...discordConfig, botToken: e.target.value })}
-                  placeholder="Bot token..."
-                  autoComplete="new-password"
-                  className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-blue-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
-                />
+                <div className="relative">
+                  <input
+                    type={showBotToken ? "text" : "password"}
+                    value={discordConfig.botToken}
+                    onChange={e => setDiscordConfig({ ...discordConfig, botToken: e.target.value })}
+                    placeholder="Bot token..."
+                    autoComplete="new-password"
+                    className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-blue-500/50 outline-none rounded-md pl-3 pr-10 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowBotToken(!showBotToken)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 cursor-pointer flex items-center justify-center"
+                  >
+                    {showBotToken ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
