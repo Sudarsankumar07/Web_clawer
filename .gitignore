@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment configurations
+.env
+.env.local
+.env.*.local
+
+# Compiled outputs
+dist/
+dist-ssr/
+*.local
+out/
+build/
+server/dist/
+
+# Temporary generated PDF reports folder
+server/temp/
+temp/
+
+# IDE / Editor configuration folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
