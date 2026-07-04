@@ -10,6 +10,8 @@ import {
   AlertTriangle
 } from 'lucide-react';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 // Types for configuration
 interface ApiConfig {
   openRouterKey: string;
@@ -155,7 +157,7 @@ export default function App() {
     setActiveStep('website_discovery');
 
     try {
-      const response = await fetch('/api/research', {
+      const response = await fetch(`${API_BASE}/api/research`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -242,7 +244,7 @@ export default function App() {
     setDiscordError('');
 
     try {
-      const res = await fetch('/api/discord', {
+      const res = await fetch(`${API_BASE}/api/discord`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -784,7 +786,7 @@ export default function App() {
                 
                 {/* Download PDF Trigger */}
                 <a
-                  href={`/api/pdf/${report.pdfFilename}`}
+                  href={`${API_BASE}/api/pdf/${report.pdfFilename}`}
                   download
                   className="w-full sm:w-auto px-5 py-3 rounded-lg bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-[#0b0f17] text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-amber-500/15 cursor-pointer transition select-none"
                 >
