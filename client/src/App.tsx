@@ -10,7 +10,8 @@ import {
   AlertTriangle
 } from 'lucide-react';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const rawApiUrl = import.meta.env.VITE_API_URL || '';
+const API_BASE = rawApiUrl.endsWith('/') ? rawApiUrl.slice(0, -1) : rawApiUrl;
 
 // Types for configuration
 interface ApiConfig {
