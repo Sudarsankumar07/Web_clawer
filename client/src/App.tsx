@@ -366,6 +366,7 @@ export default function App() {
                   value={apiConfig.openRouterKey}
                   onChange={e => setApiConfig({ ...apiConfig, openRouterKey: e.target.value })}
                   placeholder="sk-or-v1-..."
+                  autoComplete="new-password"
                   className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
                 />
               </div>
@@ -377,6 +378,7 @@ export default function App() {
                   value={apiConfig.serperKey}
                   onChange={e => setApiConfig({ ...apiConfig, serperKey: e.target.value })}
                   placeholder="Your Serper key..."
+                  autoComplete="new-password"
                   className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-amber-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
                 />
               </div>
@@ -418,6 +420,7 @@ export default function App() {
                   value={discordConfig.botToken}
                   onChange={e => setDiscordConfig({ ...discordConfig, botToken: e.target.value })}
                   placeholder="Bot token..."
+                  autoComplete="new-password"
                   className="bg-[#121824] border border-slate-800 hover:border-slate-700 focus:border-blue-500/50 outline-none rounded-md px-3 py-2 text-xs font-mono w-full text-slate-100 placeholder-slate-600 transition"
                 />
               </div>
